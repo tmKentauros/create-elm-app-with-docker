@@ -1,0 +1,25 @@
+{
+  "name": "create-elm-app-with-docker",
+  "version": "1.0.0",
+  "description": "This project is bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmKentauros/create-elm-app-with-docker.git"
+  },
+  "keywords": [
+    "Elm"
+  ],
+  "author": "tmkentauros",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmKentauros/create-elm-app-with-docker/issues"
+  },
+  "homepage": "https://github.com/tmKentauros/create-elm-app-with-docker#readme",
+  "dependencies": {
+    "firebase": "^6.3.3"
+  }
+}

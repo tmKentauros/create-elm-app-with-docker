@@ -1,0 +1,37 @@
+version: "3"
+services:
+  elm:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    ports:
+      - 3000:3000
+    command: rm -rf build elm-stuff
+  web:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    depends_on:
+      - elm
+    command: elm-app start
+  css:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    depends_on:
+      - elm
+    command: node-sass-chokidar src/ -o src/ --watch --recursive
+  doc:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    depends_on:
+      - css
+    command: elm-verify-examples
+  test:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    depends_on:
+      - doc
+    command: elm-app test
