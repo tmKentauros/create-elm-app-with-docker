@@ -4,16 +4,16 @@ services:
     build: ./elm
     volumes:
       - ./elm:/elm
-    ports:
-      - 3000:3000
-    command: rm -rf build elm-stuff
-  web:
+    command: rm -rf elm-stuff
+  analyze:
     build: ./elm
     volumes:
       - ./elm:/elm
+    ports:
+      - 3001:3001
     depends_on:
       - elm
-    command: elm-app start
+    command: elm-analyse --serve --port=3001
   css:
     build: ./elm
     volumes:
@@ -21,17 +21,26 @@ services:
     depends_on:
       - elm
     command: node-sass-chokidar src/ -o src/ --watch --recursive
-  doc:
+  web:
     build: ./elm
     volumes:
       - ./elm:/elm
     depends_on:
       - css
+    ports:
+      - 3000:3000
+    command: elm-app start
+  doc:
+    build: ./elm
+    volumes:
+      - ./elm:/elm
+    depends_on:
+      - elm
     command: elm-verify-examples
   test:
     build: ./elm
     volumes:
       - ./elm:/elm
     depends_on:
-      - doc
+      - elm
     command: elm-app test

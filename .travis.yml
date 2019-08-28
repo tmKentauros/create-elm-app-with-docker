@@ -3,6 +3,18 @@ language: minimal
 services:
   - docker
 
+sudo: false
+
+cache:
+  npm: true
+  yarn: true
+  directories:
+    - elm/node_modules
+
+branches:
+  only:
+    - master
+
 env:
   - DOCKER_COMPOSE_VERSION: 1.23.2
 
